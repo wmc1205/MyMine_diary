@@ -1,0 +1,8 @@
+<h1> Mymine Diary</h1>
+<h2> new post! </h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <input type="submit" value="등록하>"
+</form>
