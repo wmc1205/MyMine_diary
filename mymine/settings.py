@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Set the project base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-secret_file = os.path.join(BASE_DIR, 'secrets.json') #secret.json 파일 위치를 명시
+secret_file = os.path.join(BASE_DIR, 'secret.json') #secret.json 파일 위치를 명시
 
 with open(secret_file) as f:
     secrets = json.loads(f.read())
@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'mymine.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
     }
 }
 
