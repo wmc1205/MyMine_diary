@@ -1,8 +1,11 @@
 from django.urls import path
 
 from . import views
+from .views import createView
 
+app_name = 'posts'
 urlpatterns = [
-    path('create/',views.create, name='create'),
+    path('', views.index, name= 'index'),
+    path('create/', createView.as_view(), name='create'),
 
 ]
