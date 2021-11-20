@@ -1,7 +1,15 @@
 
-<h1><a href="{% url 'index' %}">mymine Diary</a></h1>
-<a href="{%u url 'create' %}">new post!</a>
+<h1><a href="{% url 'posts:index' %}">MyMine</a></h1>
+<a href="{% url 'posts:create' %}">new post!</a>
+{% if post_list %}
     <ul>
-        {% for post in post_list %}
-
+    {% for post in post_list %}
+        <li><a href = "{% url 'posts:detail' post_id %">{{post.title_text}}</a>&nbsp;&nbsp;&nbsp;
+            {{post.today_date }}&nbsp;&nbsp;
+        </li>
+        <br>
+    {% endfor %}
     </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
