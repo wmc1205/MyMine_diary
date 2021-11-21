@@ -4,8 +4,11 @@
 {% if post_list %}
     <ul>
     {% for post in post_list %}
-        <li><a href = "{% url 'posts:detail' post_id %">{{post.title_text}}</a>&nbsp;&nbsp;&nbsp;
+        <li><a href = "{% url 'posts:detail' post_pk %">{{post.title_text}}</a>&nbsp;&nbsp;&nbsp;
             {{post.today_date }}&nbsp;&nbsp;
+            <a href = "{% url 'posts:update' post_pk %">수정</a>
+            &nbsp;&nbsp;
+            <a href = "{% url 'posts:delete' post_pk %">삭제</a>
         </li>
         <br>
     {% endfor %}

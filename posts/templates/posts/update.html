@@ -1,0 +1,8 @@
+<h1>MyMine</h1>
+<h2>update</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <input type="submit" value="등록하기">
+</form>
