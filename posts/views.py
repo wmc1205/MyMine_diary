@@ -5,6 +5,8 @@ from django.utils import timezone
 from posts.form import PostForm
 from posts.models import Post
 
+def baseTemplates(request):
+    return render(request,'posts/baseTemplates.html')
 
 # 제목 리스트
 def index(request):

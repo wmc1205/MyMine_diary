@@ -75,3 +75,5 @@ fabric.properties
 
 myvenv/
 secret.json
+
+__pycache__/
