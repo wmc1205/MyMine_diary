@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts', #새로운 앱 등록
     'accounts',
+    'bootstrap4',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
