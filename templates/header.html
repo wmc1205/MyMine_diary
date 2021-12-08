@@ -3,9 +3,19 @@
 
     <div>
         <span>diary</span>&emsp;
-        <span>login</span>&emsp;
         <span>signUp</span>&emsp;
-
+        <!-- 로그인이 되어있지 않을 때 'login.html'을 보여준다 -->
+        {% if not user.is_authenticated %}
+        <!-- 현재 페이지 어디 있든 간에 get 방식을 이용해서,
+        next라는 인자를 넘겨줌으로서 원래 있던 자리로 되돌아 올수 있도록 한다.-->
+        <a href="{% url 'accounts:login' %}?next={{ request.path }}">
+            <span>login</span>&emsp;
+        </a>
+        {% else %}
+        <a href="{% url 'accounts:logout' %}?next={{ request.path }}">
+            <span>logout</span>
+        </a>
+        {% endif %}
     </div>
 
 

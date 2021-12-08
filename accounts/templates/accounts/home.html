@@ -4,6 +4,14 @@
 
   <div style="height: 20rem; background-color: #38df81; border-radius: 1rem; margin:3rem;">
     <h1>testing!!</h1>
+
+    <form action="" method="post"/>
+        {% csrf_token %}
+      <input type="submit" class="btn btn-primary" value="POST">
+    <h1> {{ text }} </h1>
+
   </div>
+
+
 
 {% endblock %}

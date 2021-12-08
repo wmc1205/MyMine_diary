@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div style="text-align:center">
+    <div>
+      <h4 style="font-weight:bold">Login</h4>
+    </div>
+    <div style="margin: 2rem">
+      <form action="" method="post">
+          {% csrf_token %}
+          {{ form }}
+        <input type="submit" value="check" class="btn btn-outline-primary">
+      </form>
+    </div>
+  </div>
+{% endblock %}
