@@ -2,7 +2,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
+
+from accounts.forms import AccountUpdateForm
 
 
 def home(request):
@@ -21,3 +23,9 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'tUser'
     template_name = 'accounts/detail.html'
+
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = AccountUpdateForm
+    success_url = reverse_lazy('accounts:home')
+    template_name = 'accounts/update.html'

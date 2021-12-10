@@ -11,6 +11,14 @@
     <h2 style="margin-bottom:3rem;">
       {{ tUser.username }}
     </h2>
+
+      {% if tUser == user %}
+        <a href="{% url 'accounts:update' pk=user.pk %}">
+          <p>
+            ChangeInfo
+          </p>
+        </a>
+      {% endif %}
       <div>
   </div>
 
