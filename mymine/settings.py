@@ -153,7 +153,9 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = reverse_lazy('accounts:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
 
+#각 미디어 파일에 대한 URL
 MEDIA_URL = '/media/'
+#업로드된 파일을 저장할 media 디렉토리 경로
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 # Default primary key field type

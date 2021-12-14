@@ -22,8 +22,9 @@ def index(request):
 # 내용 상세 페이지
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'posts/detail.html'
     context_object_name = 'tPost'
+    template_name = 'posts/detail.html'
+
 
 
 # 새로운 글 등록

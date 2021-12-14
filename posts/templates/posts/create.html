@@ -9,7 +9,7 @@
   <form action="{% url 'posts:create' %}" method="post" enctype="multipart/form-data">
      {% csrf_token %}
       {% bootstrap_form form %}<br>
-    <input type="submit" value="check" class="btn btn-primary rounded-pill col-6 mt-1">
+    <input type="submit" value="check" class="btn btn-primary">
   </form>
 </div>
 
