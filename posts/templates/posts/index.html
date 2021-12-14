@@ -1,19 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
 
-<h1><a href="{% url 'posts:index' %}">MyMine</a></h1>
-<a href="{% url 'posts:create' %}">new post!</a>
-{% if post_list %}
-    <ul>
-    {% for post in post_list %}
-        <li>
-            <a href="{% url 'posts:detail' post.pk %}">{{post.title_text}}</a>&nbsp;&nbsp;&nbsp;
-            {{post.today_date }}&nbsp;&nbsp;
-            <a href="{% url 'posts:update' post.pk %}">수정</a>
-            &nbsp;&nbsp;
-            <a href="{% url 'posts:delete' post.pk %}">삭제</a>
-        </li>
-        <br>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No posts are available.</p>
-{% endif %}
+<h1 style="text-align:center">
+    <a href="{% url 'posts:index' %}">
+        MyMine
+    </a>
+</h1>
+<div style="text-align:center; pont-weight:bold">
+    <a href="{% url 'posts:create' %}" class="btn btn-outline-primary rounded-pill col-3 mt-3 mb-3">
+        New Post!
+    </a>
+</div>
+{% endblock %}

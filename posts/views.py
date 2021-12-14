@@ -1,11 +1,16 @@
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
-from django.views.generic import CreateView
+from django.utils.decorators import method_decorator
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
+from posts.decorators import posts_ownership_required
 from posts.form import PostForm
 from posts.models import Post
 
+#decorator's list
+has_ownership = [login_required,posts_ownership_required]
 
 # 제목 리스트
 def index(request):
@@ -15,44 +20,45 @@ def index(request):
 
 
 # 내용 상세 페이지
-def detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    context = {'post': post}
-    return render(request,'posts/detail.html', context)
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'posts/detail.html'
+    context_object_name = 'tPost'
 
 
 # 새로운 글 등록
-def create(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.create_date = timezone.now()
-            post.save()
-            return redirect('posts:index')
-    else:
-        form = PostForm()
-    context = {'form': form}
-    return render(request, 'posts/create.html', context)
+@method_decorator(login_required,'get')
+@method_decorator(login_required,'post')
+class PostCreateView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'posts/create.html'
 
+    def form_valid(self, form):
+        temp_post = form.save(commit=False)
+        temp_post.writer = self.request.user
+        temp_post.save()
+        return super().form_valid(form)
 
-def update(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    def get_success_url(self):
+        return reverse('posts:detail', kwargs={'pk':self.object.pk})
 
-    if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.create_date = timezone.now()
-            post.save()
-            return redirect('posts:detail',pk)
-    else:
-        form = PostForm(instance=post)
-    context = {'form': form}
-    return render(request, 'posts/update.html', context)
+#내용 수정 페이지
+@method_decorator(has_ownership,'get')
+@method_decorator(has_ownership,'post')
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'posts/update.html'
+    context_object_name = 'tPost'
 
+    def get_success_url(self):
+        return reverse('posts:detail', kwargs={'pk':self.object.pk})
 
-def delete(request, pk):
-    post = Post.objects.get(pk=pk)
-    post.delete()
-    return redirect('posts:index')
+@method_decorator(has_ownership,'get')
+@method_decorator(has_ownership,'post')
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'posts/delete.html'
+    context_object_name = 'tPost'
+    success_url = reverse_lazy('posts:index')

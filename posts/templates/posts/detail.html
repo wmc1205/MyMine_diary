@@ -1,4 +1,29 @@
-<h1><a href ="{% url 'posts:index' %}">mymine Diary</a></h1>
-<h2> {{ post.title_text }}</h2>
-<h5> {{ post.today_date }}</h5>
-{{ post.content_text }}
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  <div>
+    <div style="text-align:center; margin:4rem auto;">
+
+        <h2>
+            {{ tPost.post_title }}
+        </h2>
+        <img src="{{tPost.post.image.url }}" alt="">
+
+        <p>
+            {{tPost.post_content }}
+        </p>
+
+        <a href = "{% url 'posts:update' pk=tPost.pk %}" class="btn btn-success rounded-pill col-1 mb-3 mt-3">
+            <p>Update Post</p>
+        </a>
+
+        <a href = "{% url 'posts:delete' pk=tPost.pk %}" class="btn btn-danger rounded-pill col-1 mb-3 mt-3">
+            <p>Delete Post</p>
+        </a>
+      <div>
+  </div>
+
+{% endblock %}
+
