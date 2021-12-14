@@ -6,7 +6,7 @@
     <div class="mb-3">
         <h4 style="font-weight:bold">ChangeInfo</h4>
     </div>
-  <form action="{% url 'accounts:update' pk=user.pk %}" method="post">
+  <form action="{% url 'accounts:update' pk=tUser.pk %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}<br>
     <input type="submit" value="check" class="btn btn-primary rounded-pill col-6 mt-1">

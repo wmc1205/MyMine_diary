@@ -6,7 +6,7 @@
     <div class="mb-3">
         <h4 style="font-weight:bold">If you want to quit, please check this button.</h4>
     </div>
-  <form action="{% url 'accounts:delete' pk=user.pk %}" method="post">
+  <form action="{% url 'accounts:delete' pk=tUser.pk %}" method="post">
      {% csrf_token %}
     <input type="submit" value="QUIT" class="btn btn-primary rounded-pill col-6 mt-1">
   </form>
