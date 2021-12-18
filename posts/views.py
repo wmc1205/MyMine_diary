@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 
 from posts.decorators import posts_ownership_required
 from posts.form import PostForm
@@ -13,10 +13,11 @@ from posts.models import Post
 has_ownership = [login_required,posts_ownership_required]
 
 # 제목 리스트
-def index(request):
-    post_list = Post.objects.all()
-    context = {'post_list': post_list}
-    return render(request, 'posts/index.html', context)
+class PostIndexView(ListView):
+    model = Post
+    context_object_name = 'post_list'
+    template_name = 'posts/index.html'
+    paginate_by = 25
 
 
 # 내용 상세 페이지

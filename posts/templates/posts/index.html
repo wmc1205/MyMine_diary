@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 style="text-align:center">
+<h2 style="text-align:center">
     <a href="{% url 'posts:index' %}">
-        MyMine
+        MyMine Diary
     </a>
-</h1>
+</h2>
+{% if post_list %}
+    <ul style="text-align:center">
+{% for post in post_list %}
+    <li><a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
+        <div>
+            {{post.today_date }}&nbsp;&nbsp;
+        </div>
+    </li>
+    <br>
+        {% endfor %}
+        </ul>
+{% else %}
+    <p>No posts are in diary..</p>
+{% endif %}
 <div style="text-align:center; pont-weight:bold">
     <a href="{% url 'posts:create' %}" class="btn btn-outline-primary rounded-pill col-3 mt-3 mb-3">
         New Post!

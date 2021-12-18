@@ -21,6 +21,7 @@ def home(request):
     else :
         return render(request, 'accounts/home.html', context={'text' : 'GET METHOD!!!'})
 
+#회원가입
 class AccountCreateView(CreateView):
     model = User
     form_class =UserCreationForm
