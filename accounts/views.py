@@ -16,11 +16,7 @@ has_ownership = [login_required,accounts_ownership_required]
 @login_required
 def home(request):
     #logout 시 home 화면이 아닌 login 페이지로 rendering
-    if request.method == "POST":
-        return render(request, 'accounts/home.html', context={'text' : 'POST METHOD!!!'})
-    else :
-        return render(request, 'accounts/home.html', context={'text' : 'GET METHOD!!!'})
-
+    return render(request,'accounts/home.html')
 #회원가입
 class AccountCreateView(CreateView):
     model = User

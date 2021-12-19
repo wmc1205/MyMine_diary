@@ -17,7 +17,8 @@ class PostIndexView(ListView):
     model = Post
     context_object_name = 'post_list'
     template_name = 'posts/index.html'
-    paginate_by = 25
+    paginate_by = 5
+
 
 
 # 내용 상세 페이지

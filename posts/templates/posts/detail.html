@@ -9,12 +9,17 @@
         <h2>
             {{ tPost.post_title }}
         </h2>
+        <h5>
+            {{ tPost.writer }}
+        </h5>
+        <hr>
         <img src="{{ tPost.post_image.url }}" alt="">
 
         <p>
             {{tPost.post_content }}
         </p>
-
+        <hr>
+    {% if tPost.writer == user %}
         <a href = "{% url 'posts:update' pk=tPost.pk %}" class="btn btn-success rounded-pill col-1 mb-3 mt-3">
             <p>Update Post</p>
         </a>
@@ -22,8 +27,8 @@
         <a href = "{% url 'posts:delete' pk=tPost.pk %}" class="btn btn-danger rounded-pill col-1 mb-3 mt-3">
             <p>Delete Post</p>
         </a>
+    {% endif %}
       <div>
   </div>
 
 {% endblock %}
-

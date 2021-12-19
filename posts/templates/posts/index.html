@@ -1,25 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 style="text-align:center">
-    <a href="{% url 'posts:index' %}">
-        MyMine Diary
-    </a>
+<h2 style="text-align:center" class="mb-4 mt-4">
+    MyMine Diary
 </h2>
-{% if post_list %}
-    <ul style="text-align:center">
-{% for post in post_list %}
-    <li><a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
-        <div>
-            {{post.today_date }}&nbsp;&nbsp;
-        </div>
-    </li>
-    <br>
-        {% endfor %}
-        </ul>
-{% else %}
-    <p>No posts are in diary..</p>
-{% endif %}
+
+    {% if post_list %}
+        <table style="text-align:center;" class="table table-bordered">
+
+    {% for post in post_list %}
+             {% if post.writer == user %}
+        <thead>
+            <tr>
+                <th style="padding:20px"><a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
+                <td>
+                {{ post.today_date }}&nbsp;&nbsp;
+                </td>
+                </th>
+         </tr>
+        </thead>
+            {% endif %}
+    {% endfor %}
+        </table>
+    {% else %}
+        <p>No posts are in diary..</p>
+    {% endif %}
+
+{% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+
 <div style="text-align:center; pont-weight:bold">
     <a href="{% url 'posts:create' %}" class="btn btn-outline-primary rounded-pill col-3 mt-3 mb-3">
         New Post!

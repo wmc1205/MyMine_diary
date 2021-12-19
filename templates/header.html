@@ -1,7 +1,8 @@
+
 <body style="background: #fff; background: -webkit-linear-gradient(to right, #ffc107, #fff); background: linear-gradient(to right, #ffc107, #fff);">
 <div class="mymine_header_div">
     <div class="mymine_header_logo">
-    <h1><a class="navbar-title " href="{% url 'accounts:home' %}">MyMine Diary</a></h1>
+    <h1><a class="navbar-title" href="{% url 'accounts:home' %}">MyMine Diary</a></h1>
     </div>
     <div>&emsp;
         <a href="{% url 'posts:index' %}?next={{ request.path }}">
@@ -25,6 +26,7 @@
         <a href="{% url 'accounts:logout' %}?next={{ request.path }}">
             <span>logout</span>
         </a>
+        <p style="text-align:right; font-weight:bold">{{ user.username }} 님이 접속하셨습니다.</p>
 
         {% endif %}
 
