@@ -1,29 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2 style="text-align:center" class="mb-4 mt-4">
-    MyMine Diary
+<h2 style="text-align:center; font-family: 'Poppins', sans-serif;" class="mb-4 mt-4">
+    My List
 </h2>
 
     {% if post_list %}
-        <table style="text-align:center;" class="table table-bordered">
-
-    {% for post in post_list %}
-             {% if post.writer == user %}
-        <thead>
-            <tr>
-                <th style="padding:20px"><a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
-                <td>
+    <div class="container my-3">
+    <table class="table table-bordered">
+        <thead style="border-top: 1px solid black; border-bottom: 1px solid black">
+        <tr style="text-align:center" class="thead-dark">
+            <th scope="row">제목</th>
+            <th scope="row">작성일자</th>
+            </tr>
+         </thead>
+        {% for post in post_list %}
+            <tr style="border-top: 1px solid black; border-bottom: 1px solid black" class="text-center">
+                <th style="padding: 20px">
+                    <a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
+                </th>
+                <td style="padding: 20px">
                 {{ post.today_date }}&nbsp;&nbsp;
                 </td>
-                </th>
          </tr>
-        </thead>
-            {% endif %}
+
+
     {% endfor %}
         </table>
+    </div>
     {% else %}
-        <p>No posts are in diary..</p>
+        <p> No posts..</p>
     {% endif %}
 
 {% include 'snippets/pagination.html' with page_obj=page_obj %}

@@ -19,6 +19,11 @@ class PostIndexView(ListView):
     template_name = 'posts/index.html'
     paginate_by = 5
 
+    def get_queryset(self):
+        post_list = Post.objects.order_by('-pk')
+        return post_list
+
+
 
 
 # 내용 상세 페이지

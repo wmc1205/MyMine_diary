@@ -14,14 +14,10 @@
 
       {% if tUser == user %}
         <a href="{% url 'accounts:update' pk=user.pk %}">
-          <p>
-            ChangeInfo
-          </p>
+           <input type="submit" value="ChangeInfo" class="btn btn-warning rounded-pill col-1 mt-4">
         </a>
       <a href="{% url 'accounts:delete' pk=user.pk %}">
-          <p>
-            Quit
-          </p>
+           <input type="submit" value="Quit" class="btn btn-danger rounded-pill col-1 mt-4">
         </a>
       {% endif %}
       <div>

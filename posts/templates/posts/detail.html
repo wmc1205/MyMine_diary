@@ -4,7 +4,7 @@
 
 
   <div>
-    <div style="text-align:center; margin:4rem auto;">
+    <div style="text-align:center; margin:2rem auto;">
 
         <h2>
             {{ tPost.post_title }}
@@ -13,11 +13,14 @@
             {{ tPost.writer }}
         </h5>
         <hr>
-        <img src="{{ tPost.post_image.url }}" alt="">
-
+        <div style="margin: 2rem auto">
+            <img src="{{ tPost.post_image.url }}" alt="">
+        </div>
+            <div>
         <p>
-            {{tPost.post_content }}
+            {{tPost.post_content | safe}}
         </p>
+        </div>
         <hr>
     {% if tPost.writer == user %}
         <a href = "{% url 'posts:update' pk=tPost.pk %}" class="btn btn-success rounded-pill col-1 mb-3 mt-3">
