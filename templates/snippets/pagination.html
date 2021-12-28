@@ -1,19 +1,31 @@
 <div style="text-align: center; margin: 1rem 0;">
-  {% if page_obj.has_previous %}
-  <a href="{% url 'posts:index' %}?page={{ page_obj.previous_page_number }}"
-     class="btn btn-secondary rounded-pill">
-      이전
-  </a>
-  {% endif %}
-  <a href="{% url 'posts:index' %}?page={{ page_obj.number }}"
-     class="btn btn-primary rounded-pill active">
-    {{ page_obj.number }}
-  </a>
+    <div>
+      {% if page_obj.has_previous %}
+          <a href="{% url 'posts:index' %}?page=1"
+             class="btn btn-secondary rounded-pill">
+            &laquo;
+          </a>
 
-  {% if page_obj.has_next %}
-  <a href="{% url 'posts:index' %}?page={{ page_obj.next_page_number }}"
-     class="btn btn-secondary rounded-pill">
-      다음
-  </a>
-  {% endif %}
+      <a href="{% url 'posts:index' %}?page={{ page_obj.previous_page_number }}"
+         class="btn btn-secondary rounded-pill">
+          이전
+      </a>
+      {% endif %}
+      <a href="{% url 'posts:index' %}?page={{ page_obj.number }}"
+         class="btn btn-primary rounded-pill active">
+        {{ page_obj.number }}
+      </a>
+
+      {% if page_obj.has_next %}
+      <a href="{% url 'posts:index' %}?page={{ page_obj.next_page_number }}"
+         class="btn btn-secondary rounded-pill">
+          다음
+      </a>
+      <a href="{% url 'posts:index' %}?page={{ page_obj.paginator.num_pages }}"
+        class="btn btn-secondary rounded-pill">
+        &raquo;
+      </a>
+
+      {% endif %}
+    </div>
 </div>

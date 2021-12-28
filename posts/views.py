@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -13,15 +14,13 @@ from posts.models import Post
 has_ownership = [login_required,posts_ownership_required]
 
 # 제목 리스트
+
 class PostIndexView(ListView):
     model = Post
     context_object_name = 'post_list'
     template_name = 'posts/index.html'
-    paginate_by = 5
-
-    def get_queryset(self):
-        post_list = Post.objects.order_by('-pk')
-        return post_list
+    paginate_by = 6
+    ordering = ['-today_date']
 
 
 
@@ -35,8 +34,7 @@ class PostDetailView(DetailView):
 
 
 # 새로운 글 등록
-@method_decorator(login_required,'get')
-@method_decorator(login_required,'post')
+
 class PostCreateView(CreateView):
     model = Post
     form_class = PostForm

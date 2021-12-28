@@ -6,30 +6,39 @@
 </h2>
 
     {% if post_list %}
-    <div class="container my-3">
+    <div class="container my-5">
     <table class="table table-bordered">
         <thead style="border-top: 1px solid black; border-bottom: 1px solid black">
         <tr style="text-align:center" class="thead-dark">
+            <th scope="row">작성자</th>
             <th scope="row">제목</th>
             <th scope="row">작성일자</th>
             </tr>
          </thead>
         {% for post in post_list %}
+             {% if post.writer == request.user %}
+            <div>
             <tr style="border-top: 1px solid black; border-bottom: 1px solid black" class="text-center">
+                <th style="padding:20px">
+                    {{ post.writer }}
+                </th>
                 <th style="padding: 20px">
                     <a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
                 </th>
-                <td style="padding: 20px">
+                <td style="padding:20px">
                 {{ post.today_date }}&nbsp;&nbsp;
                 </td>
          </tr>
-
+            </div>
+            {% endif %}
 
     {% endfor %}
         </table>
     </div>
     {% else %}
-        <p> No posts..</p>
+        <div style="text-align:center; margin: 4rem auto">
+        <h3> No posts..</h3>
+        </div>
     {% endif %}
 
 {% include 'snippets/pagination.html' with page_obj=page_obj %}
