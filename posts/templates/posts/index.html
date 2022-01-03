@@ -10,28 +10,30 @@
     <table class="table table-bordered">
         <thead style="border-top: 1px solid black; border-bottom: 1px solid black">
         <tr style="text-align:center" class="thead-dark">
-            <th scope="row">작성자</th>
-            <th scope="row">제목</th>
-            <th scope="row">작성일자</th>
+            <th scope="row" style="width:10%">#</th>
+            <th scope="row" style="width:10%">작성자</th>
+            <th scope="row" style="width:50%">제목</th>
+            <th scope="row" style="width:30%">작성일자</th>
             </tr>
          </thead>
         {% for post in post_list %}
-             {% if post.writer == request.user %}
             <div>
             <tr style="border-top: 1px solid black; border-bottom: 1px solid black" class="text-center">
                 <th style="padding:20px">
-                    {{ post.writer }}
+                  <span>{{ post.pk }}</span>
+                </th>
+                <th style="padding:20px">
+                    <span>{{ post.writer }}</span>
                 </th>
                 <th style="padding: 20px">
-                    <a href=" {% url 'posts:detail' pk=post.pk %}">{{ post.post_title }}</a>&nbsp;&nbsp;&nbsp;
+                    <a href=" {% url 'posts:detail' pk=post.pk %}">
+                        <span>{{ post.post_title }}</span></a>&nbsp;&nbsp;&nbsp;
                 </th>
                 <td style="padding:20px">
-                {{ post.today_date }}&nbsp;&nbsp;
+                    <span>{{ post.today_date }}&nbsp;&nbsp;</span>
                 </td>
          </tr>
             </div>
-            {% endif %}
-
     {% endfor %}
         </table>
     </div>

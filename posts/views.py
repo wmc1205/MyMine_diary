@@ -1,5 +1,10 @@
+
+
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.http import request
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
@@ -21,6 +26,20 @@ class PostIndexView(ListView):
     template_name = 'posts/index.html'
     paginate_by = 6
     ordering = ['-today_date']
+    #login user와 writer가 일치할 경우에만, post 출력하는 코드 구현
+
+    def get_queryset(self):
+        posts = Post.objects.filter(writer=self.request.user).values_list('writer')
+        post_list = Post.objects.filter(writer__in=posts)
+        return post_list
+
+    #<eeror 2>
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super(PostIndexView, self).get_context_data(**kwargs)
+    #     if Post.writer == self.:
+    #         context['post_list']=Post.objects.all()
+    #     return context
+
 
 
 
