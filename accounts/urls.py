@@ -6,6 +6,7 @@ from .views import AccountCreateView, AccountDetailView, AccountUpdateView, Acco
 
 app_name = 'accounts'
 urlpatterns = [
+    path('calander/',views.calender,name="calander"),
     path('home/',views.home, name="home"),
     path('login/',LoginView.as_view(template_name='accounts/login.html'), name="login"),
     path('logout/',LogoutView.as_view(), name="logout"),

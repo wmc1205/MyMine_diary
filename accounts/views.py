@@ -17,6 +17,10 @@ has_ownership = [login_required,accounts_ownership_required]
 def home(request):
     #logout 시 home 화면이 아닌 login 페이지로 rendering
     return render(request,'accounts/home.html')
+
+@login_required
+def calender(request):
+    return render(request,'accounts/calander.html')
 #회원가입
 class AccountCreateView(CreateView):
     model = User
