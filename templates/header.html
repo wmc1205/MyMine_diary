@@ -2,28 +2,32 @@
 <body style="background: #fff; background: -webkit-linear-gradient(to right, #ffc107, #fff); background: linear-gradient(to right, #ffc107, #fff);">
 <div class="mymine_header_div">
     <div class="mymine_header_logo">
-    <h1><a class="navbar-title" href="{% url 'accounts:home' %}">MyMine Diary</a></h1>
+    <h1><a href="{% url 'accounts:home' %}">MyMine Diary</a></h1>
     </div>
-    <div>&emsp;
+    <div style="text-decoration-line: none">&emsp;
 
         <!-- 로그인이 되어있지 않을 때 'login.html'을 보여준다 -->
         {% if not user.is_authenticated %}
         <a href="{% url 'accounts:create' %}">
-        <span>signUp</span>&emsp;&emsp;
+        SignUp&emsp;
         </a>
         <a href="{% url 'accounts:login' %}">
-            <span>login</span>&emsp;&emsp;
-
+            Login&emsp;
         </a>
         {% else %}
         <a href="{% url 'posts:index' %}">
-            <span>diary</span>&emsp;
+            Diary&emsp;
         </a>
+
+        <a href="{% url 'accounts:calander' %}">
+            Calander&emsp;
+        </a>
+
         <a href="{% url 'accounts:detail' pk=user.pk %}">
-            <span>MyDetail</span>&emsp;
+            MyDetail&emsp;
         </a>
         <a href="{% url 'accounts:logout' %}">
-            <span>logout</span>
+            Logout
         </a>
         <p style="text-align:right; font-weight:bold">{{ user.username }} 님이 접속하셨습니다.</p>
 

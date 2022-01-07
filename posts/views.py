@@ -25,13 +25,15 @@ class PostIndexView(ListView):
     context_object_name = 'post_list'
     template_name = 'posts/index.html'
     paginate_by = 6
-    ordering = ['-today_date']
+
     #login user와 writer가 일치할 경우에만, post 출력하는 코드 구현
 
     def get_queryset(self):
         posts = Post.objects.filter(writer=self.request.user).values_list('writer')
         post_list = Post.objects.filter(writer__in=posts)
+        order=Post.objects.all().order_by('-today_date')
         return post_list
+
 
     #<eeror 2>
     # def get_context_data(self, *, object_list=None, **kwargs):
