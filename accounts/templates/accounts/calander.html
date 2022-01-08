@@ -80,9 +80,10 @@
         for(var i = 1; i<= dayy(year, month); i++){ //달력 일수만큼 찍어줌
             var cell = row.insertCell();
             if(year == date.getFullYear() && month-1 == date.getMonth() && i == date.getDate()){
-                cell.innerHTML = "<div class='calendar_cell'>"+"<a class='calendar_cell' href={% url 'posts:create' %} >"+i+"</a></div>"+"<a class='calendar_a_tag_example'>"+"</a>";
+                cell.innerHTML = "<div class='calendar_cell'>"+"<a class='calendar_cell' href={% url 'posts:create' %} >"+i+"</a></div>"+"<a class='calendar_a_tag_example'>"+"일기"+"</a>";
             }else{
-                cell.innerHTML = "<div><a class='calendar_cell2' href={% url 'posts:create' %}>"+i+"</a></div>";
+
+                cell.innerHTML = "<div><a class='calendar_cell2' href={% url 'posts:index' %}>"+i+"</a></div>";
             }
 
             cnt += 1;
