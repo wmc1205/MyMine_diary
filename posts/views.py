@@ -2,6 +2,7 @@
 
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from django.urls import reverse, reverse_lazy
 
@@ -27,9 +28,9 @@ class PostIndexView(ListView):
     #login user와 writer가 일치할 경우에만, post 출력하는 코드 구현
 
     def get_queryset(self):
-
         posts = Post.objects.filter(writer=self.request.user).values_list('writer')
         post_list = Post.objects.filter(writer__in=posts)
+
 
         return post_list
 

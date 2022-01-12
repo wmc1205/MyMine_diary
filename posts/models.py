@@ -10,8 +10,12 @@ class Post(models.Model):
     post_title = models.CharField(max_length=120)
     post_image = models.ImageField(upload_to='posts/',blank=False,null=True)
     post_content = models.TextField(null=True)
-    today_date = models.DateTimeField(auto_now_add=True, null=True)
+    created = models.DateTimeField(auto_now_add=True,null=True)
+    updated = models.DateTimeField(auto_now_add=True,null=True)
+    class Meta:
+        ordering = ['created','-updated']
 
     def publish(self):
-        self.today_date = timezone.now()
+        self.created = timezone.now()
+        self.updated = timezone.now()
         self.save()
