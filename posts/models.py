@@ -12,9 +12,6 @@ class Post(models.Model):
     post_content = models.TextField(null=True)
     today_date = models.DateTimeField(auto_now_add=True, null=True)
 
-    class Meta:
-        ordering=['today_date']
-
     def publish(self):
         self.today_date = timezone.now()
         self.save()
